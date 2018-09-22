@@ -17,7 +17,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Log Viewer</h2>                            
+                            <h2>Log Viewer [{{\Carbon\Carbon::parse($date)->format('d F Y')}}]</h2>                            
                         </div>
                         <div class="body">
                             <div class="table-responsive">
@@ -39,7 +39,7 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @foreach(App\Device::where('key', $key)->first()->data()->orderBy('time', 'desc')->get() as $data)
+                                        @foreach(App\Device::where('key', $key)->first()->data()->whereDate('time', date($date))->orderBy('time', 'desc')->take(90000)->get() as $data)
                                         <tr>                                            
                                             <td>{{$data['time']}}</td>
                                             <td>{{$data['r']}}</td>

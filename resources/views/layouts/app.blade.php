@@ -140,7 +140,7 @@
                         </a>
                     </li>
                     @if(Auth::user()->device()->count() > 0)
-                    <li @if($route=='log')class="active"@endif>
+                    <li @if($route=='log' || $route=='log.detail')class="active"@endif>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">storage</i>
                             <span>Data Log</span>

@@ -24,7 +24,8 @@ Route::post('/device/add', 'HomeController@addDevice')->name('device.add');
 Route::post('/device/edit', 'HomeController@editDevice')->name('device.edit');
 Route::post('/device/delete', 'HomeController@deleteDevice')->name('device.delete');
 
-Route::get('/log/{key}', 'HomeController@logViewer')->name('log');
+Route::get('/log/{key}', 'HomeController@logListViewer')->name('log');
+Route::get('/log/{key}/{date}', 'HomeController@logViewer')->name('log.detail');
 Route::get('/graph/{key}', 'HomeController@showGraph')->name('show.graph');
 Route::get('/data/graph/{key}', 'HomeController@getGraph')->name('get.graph');
 

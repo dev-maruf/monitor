@@ -53,14 +53,20 @@ class HomeController extends Controller
         return "success";
     }
 
-    public function logViewer($key)
+    public function logListViewer($key)
+    {
+        $dev = Device::where('key', $key)->first();        
+        return view('loglist', compact('dev'));
+    }
+
+    public function logViewer($key, $date)
     {
         $dev = Device::where('key', $key);
         $count = $dev->count();
         if($count != 1){
             return redirect()->route('home');
         }
-        return view('log', compact('key'));
+        return view('log', compact('key', 'date'));
     }
 
     public function getGraph($key)
