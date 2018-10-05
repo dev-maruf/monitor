@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Device;
 use App\Data;
@@ -34,12 +35,14 @@ class APIController extends Controller
             ]);
         }
         $device = $dev->first();
+        $date = str_replace("|", " ", $request->time);
+        $date = Carbon::parse($date);
         
         $device->data()->create([
             'r' => $request->r,
             's' => $request->s,
             't' => $request->t,
-            'time' => date('Y-m-d H:i:s')
+            'time' => $date->format('Y-m-d H:i:s')
         ]);
 
         return response()->json([
